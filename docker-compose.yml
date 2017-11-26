@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  # we will use grafana 4.6.2
+  grafana:
+    image: grafana/grafana:4.6.2
+    container_name: grafana
+    ports:
+      - 3000:3000
+    links:
+      - postgres
+    env_file:
+      - ./grafana/config.monitoring
+    volumes:
+      - ./grafana/dashboard:/etc/extra-config/grafana
+    command: ./etc/extra-config/grafana/post.sh
+  # we will use postgres as datasource.
+  postgres:
+    image: postgres:9.6.6
+    environment:
+      POSTGRES_USER: postgres     # define credentials
+      POSTGRES_PASSWORD: postgres # define credentials
+      POSTGRES_DB: postgres       # define database
+    ports:
+      - 5432:5432                 # Postgres port
+    volumes:
+      - ./postgres/sql:/docker-entrypoint-initdb.d
