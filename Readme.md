@@ -41,6 +41,11 @@ docker exec -it GRAFANA_ID_CONTAINER  bash
 
 For Monitoring, enter to [Grafana](http://grafana.com) and review the Metrix dashboard.
 
+> Open the Grafana service and user the next credentials: 
+>  - **user:** admin
+>  - **password:** foobar
+
+
 ### References<a name="references"></a>
 
 * https://grafana.com
